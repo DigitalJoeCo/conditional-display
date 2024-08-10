@@ -18,12 +18,9 @@
         }
     ],
     "minimum-stability": "stable",
-    "scripts": {
-        "post-install-cmd": [
-            "composer install --no-dev"
-        ],
-        "post-update-cmd": [
-            "composer install --no-dev"
-        ]
+    "extra": {
+        "installer-paths": {
+            "vendor/{$vendor}/{$name}": ["htmlburder/carbon-*"]
+        }
     }
 }
