@@ -3,9 +3,9 @@
     "description": "Allows you to load scripts, sidebars, and more conditionally. Any way you could want.",
     "type": "wordpress-plugin",
     "require": {
+        "mnsami/composer-custom-directory-installer": "^2.0",
         "htmlburger/carbon-fields": "^3.6",
-        "htmlburger/carbon-field-number": "^3.0",
-        "composer/installers": "^1.0 || ^2.0"
+        "htmlburger/carbon-field-number": "^3.0"
     },
     "license": "GPL",
     "autoload": {
@@ -25,20 +25,16 @@
         "sort-packages": true,
         "optimize-autoloader": true,
         "allow-plugins": {
-            "composer/installers": true
+            "composer/installers": true,
+            "mnsami/composer-custom-directory-installer": true
         }
-    },
-    "scripts": {
-        "pre-install-cmd": [
-            "@php set-install-path.php"
-        ],
-        "pre-update-cmd": [
-            "@php set-install-path.php"
-        ]
     },
     "extra": {
         "installer-paths": {
-            "{$CONDITIONAL_DISPLAY_INSTALL_PATH}/vendor/{$vendor}/{$name}": ["htmlburger/carbon-fields", "htmlburger/carbon-field-number"]
+            "./vendor/{$vendor}/{$name}": [
+                "htmlburger/carbon-fields", 
+                "htmlburger/carbon-field-number"
+            ]
         }
     }
 }
