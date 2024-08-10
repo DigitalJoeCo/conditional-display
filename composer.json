@@ -30,10 +30,10 @@
     },
     "scripts": {
         "pre-install-cmd": [
-            "@php -r \"putenv('CONDITIONAL_DISPLAY_INSTALL_PATH=' . getcwd());\""
+            "@php set-install-path.php"
         ],
         "pre-update-cmd": [
-            "@php -r \"putenv('CONDITIONAL_DISPLAY_INSTALL_PATH=' . getcwd());\""
+            "@php set-install-path.php"
         ]
     },
     "extra": {
