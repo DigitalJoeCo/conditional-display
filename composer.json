@@ -20,14 +20,12 @@
     ],
     "minimum-stability": "stable",
     "config": {
+        "preferred-install": "dist",
+        "vendor-dir": "./vendor",
+        "sort-packages": true,
+        "optimize-autoloader": true,
         "allow-plugins": {
             "composer/installers": true
-        },
-        "vendor-dir": "vendor"
-    },
-    "extra": {
-        "installer-paths": {
-            "vendor/{$vendor}/{$name}": ["type:wordpress-plugin"]
         }
     }
 }
