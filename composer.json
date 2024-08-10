@@ -20,7 +20,7 @@
     "minimum-stability": "stable",
     "extra": {
         "installer-paths": {
-            "vendor/{$vendor}/{$name}": ["htmlburder/carbon-*"]
+            "vendor/{$vendor}/{$name}": ["htmlburger/carbon-*"]
         }
     }
 }
