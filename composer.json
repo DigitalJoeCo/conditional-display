@@ -2,17 +2,6 @@
     "name": "digitaldyve/conditional-display",
     "description": "Allows you to load scripts, sidebars, and more conditionally. Any way you could want.",
     "type": "wordpress-plugin",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/digitaljoeco/wp-env-composer.git"
-        }
-    ],
-    "require": {
-        "digitaldyve/wp-env-composer-plugin": "dev-master",
-        "htmlburger/carbon-fields": "^3.6",
-        "htmlburger/carbon-field-number": "^3.0"
-    },
     "license": "GPL",
     "autoload": {
         "psr-4": {
@@ -26,21 +15,6 @@
     ],
     "minimum-stability": "stable",
     "config": {
-        "preferred-install": "dist",
-        "vendor-dir": "./vendor",
-        "sort-packages": true,
-        "optimize-autoloader": true,
-        "allow-plugins": {
-            "composer/installers": true,
-            "digitaldyve/wp-env-composer-plugin": true
-        }
-    },
-    "extra": {
-        "installer-paths": {
-            "{$WP_ENV_WP_PLUGIN_DIR}/conditional-display/vendor/{$vendor}/{$name}": [
-                "htmlburger/carbon-fields", 
-                "htmlburger/carbon-field-number"
-            ]
-        }
+        "optimize-autoloader": true
     }
 }

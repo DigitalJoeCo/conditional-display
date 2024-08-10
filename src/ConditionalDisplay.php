@@ -4,6 +4,7 @@ namespace DigitalDyve\ConditionalDisplay;
 
 use Carbon_Fields\Field\Field;
 use DigitalDyve\ConditionalDisplay\Contracts\Singleton;
+use Carbon_Fields\Carbon_Fields;
 
 class ConditionalDisplay
 {
@@ -16,7 +17,17 @@ class ConditionalDisplay
 
     public function init()
     {
-        add_action('after_setup_theme', fn () => \Carbon_Fields\Carbon_Fields::boot());
+        if (! class_exists('\Carbon_Fields\Carbon_Fields')) {
+            if (is_admin()) {
+                add_action('admin_notices', fn () => printf(
+                    '<div class="notice notice-error"><p>%s</p></div>',
+                    __('Please install Carbon Fields plugin.')
+                ));
+            }
+            return;
+        }
+
+        add_action('after_setup_theme', fn () => ! Carbon_Fields::is_booted() && Carbon_Fields::boot());
         add_action('carbon_fields_register_fields', fn () => $this->registerFields());
         add_action('carbon_fields_field_activated', fn ($field) => $this->codeEditorJs($field));
         add_action('template_redirect', fn () => $this->renderFields(), PHP_INT_MAX);
