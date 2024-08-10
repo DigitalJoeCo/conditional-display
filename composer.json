@@ -16,5 +16,9 @@
     "minimum-stability": "stable",
     "config": {
         "optimize-autoloader": true
+    },
+    "require": {
+        "htmlburger/carbon-field-number": "^3.0",
+        "htmlburger/carbon-fields": "^3.6"
     }
 }

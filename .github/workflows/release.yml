@@ -1,0 +1,79 @@
+name: Create Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build_release:
+    name: build_release
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: version
+        run: |
+          echo "VERSION=$(grep -i "version:" conditional-display.php | sed -E 's/.*Version: *(.+)/\1/')" >> $GITHUB_OUTPUT
+        id: version
+
+      - name: Get Hash
+        run: echo "git_hash=$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_OUTPUT
+        id: hash
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+
+      - name: Install Composer
+        uses: php-actions/composer@v6
+        with:
+          php_version: '8.1'
+          version: '2.x'
+
+      - name: Install Dependencies
+        run: composer install --no-dev --optimize-autoloader
+
+      - name: Package Release
+        run: |
+          zip -r -X "Conditional-Display-$(VERSION).zip" .
+          tar -zcvf "Conditional-Display-$(VERSION).tar.gz" .
+
+      - name: release
+        uses: ncipollo/release-action@v1
+        id: create_release
+        with:
+          draft: false
+          prerelease: false
+          name: Conditional Display ${{ steps.version.outputs.VERSION }}
+          tag: ${{ steps.version.outputs.VERSION }}
+          generateReleaseNotes: false
+          makeLatest: true
+          body: |
+            Release version: ${{ steps.version.outputs.VERSION }}
+            Git hash: ${{ steps.hash.outputs.git_hash }}
+
+      - name: upload zip
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Conditional-Display-${{ steps.version.outputs.VERSION }}.zip
+          asset_name: Conditional-Display-${{ steps.version.outputs.VERSION }}.zip
+          asset_content_type: application/zip
+
+      - name: upload tar
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Conditional-Display-${{ steps.version.outputs.VERSION }}.tar.gz
+          asset_name: Conditional-Display-${{ steps.version.outputs.VERSION }}.tar.gz
+          asset_content_type: application/gzip

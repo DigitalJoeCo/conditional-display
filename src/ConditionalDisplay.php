@@ -21,7 +21,7 @@ class ConditionalDisplay
             if (is_admin()) {
                 add_action('admin_notices', fn () => printf(
                     '<div class="notice notice-error"><p>%s</p></div>',
-                    __('Please install Carbon Fields plugin.')
+                    __('Please install Carbon Fields.')
                 ));
             }
             return;
