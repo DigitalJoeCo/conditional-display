@@ -29,20 +29,21 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
+          tools: composer:v2
 
-      - name: Install Composer
-        uses: php-actions/composer@v6
-        with:
-          php_version: '8.1'
-          version: '2.x'
+      - name: Set Permissions
+        run: |
+          sudo chown -R $USER:$USER .
+          sudo chmod -R 755 .
 
       - name: Install Dependencies
         run: composer install --no-dev --optimize-autoloader
 
       - name: Package Release
         run: |
-          zip -r -X "Conditional-Display-$(VERSION).zip" .
-          tar -zcvf "Conditional-Display-$(VERSION).tar.gz" .
+          zip -r -X "Conditional-Display-${{ steps.version.outputs.VERSION }}.zip" . -x ".*" "*/.*"
+          tar --exclude=".*" --exclude="*/.*" -zcvf "Conditional-Display-${{ steps.version.outputs.VERSION }}.tar.gz" .
+
 
       - name: release
         uses: ncipollo/release-action@v1
