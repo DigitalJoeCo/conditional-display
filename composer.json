@@ -4,7 +4,8 @@
     "type": "wordpress-plugin",
     "require": {
         "htmlburger/carbon-fields": "^3.6",
-        "htmlburger/carbon-field-number": "^3.0"
+        "htmlburger/carbon-field-number": "^3.0",
+        "composer/installers": "^1.0 || ^2.0"
     },
     "license": "GPL",
     "autoload": {
@@ -18,9 +19,15 @@
         }
     ],
     "minimum-stability": "stable",
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        },
+        "vendor-dir": "vendor"
+    },
     "extra": {
         "installer-paths": {
-            "vendor/{$vendor}/{$name}": ["htmlburger/carbon-fields", "htmlburger/carbon-field-number"]
+            "vendor/{$vendor}/{$name}": ["type:wordpress-plugin"]
         }
     }
 }
