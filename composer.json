@@ -1,0 +1,21 @@
+{
+    "name": "digitaldyve/conditional-display",
+    "description": "Allows you to load scripts, sidebars, and more conditionally. Any way you could want.",
+    "type": "wordpress-plugin",
+    "require": {
+        "htmlburger/carbon-fields": "^3.6",
+        "htmlburger/carbon-field-number": "^3.0"
+    },
+    "license": "GPL",
+    "autoload": {
+        "psr-4": {
+            "DigitalDyve\\ConditionalDisplay\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Digital Dyve"
+        }
+    ],
+    "minimum-stability": "stable"
+}
