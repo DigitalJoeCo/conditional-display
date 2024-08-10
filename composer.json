@@ -27,5 +27,18 @@
         "allow-plugins": {
             "composer/installers": true
         }
+    },
+    "scripts": {
+        "pre-install-cmd": [
+            "@php -r \"putenv('CONDITIONAL_DISPLAY_INSTALL_PATH=' . getcwd());\""
+        ],
+        "pre-update-cmd": [
+            "@php -r \"putenv('CONDITIONAL_DISPLAY_INSTALL_PATH=' . getcwd());\""
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "{$CONDITIONAL_DISPLAY_INSTALL_PATH}/vendor/{$vendor}/{$name}": ["htmlburger/carbon-fields", "htmlburger/carbon-field-number"]
+        }
     }
 }
