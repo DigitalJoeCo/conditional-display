@@ -15,10 +15,19 @@
     ],
     "minimum-stability": "stable",
     "config": {
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "roots/wordpress-core-installer": true
+        }
     },
     "require": {
         "htmlburger/carbon-field-number": "^3.0",
         "htmlburger/carbon-fields": "^3.6"
+    },
+    "require-dev": {
+        "roots/wordpress": "^6.6"
+    },
+    "extra": {
+        "wordpress-install-dir": "../wordpress"
     }
 }

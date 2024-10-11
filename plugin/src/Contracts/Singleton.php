@@ -20,7 +20,7 @@ trait Singleton
     /**
      * Singletons should not be cloneable.
      */
-    final private function __clone() {}
+    private function __clone() {}
 
     /**
      * Singletons should not be restorable from strings.

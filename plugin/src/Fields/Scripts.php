@@ -33,10 +33,6 @@ class Scripts
     
     public function render(): void
     {
-        if (! is_admin()) {
-            return;
-        }
-
         foreach ($this->getDisplayed('scripts') as $script) {
             $normalizedScript = $script;
 

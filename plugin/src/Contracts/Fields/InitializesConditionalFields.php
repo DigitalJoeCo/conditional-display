@@ -86,6 +86,7 @@ trait InitializesConditionalFields
         string $pretty,
         string $pageParent,
     ): AbstractContainer {
+        \QM::debug($handle);
         return Container::make('theme_options', $pretty)
             ->set_page_parent($pageParent)
             ->add_fields([
@@ -129,7 +130,10 @@ trait InitializesConditionalFields
                 $queried_object->ID,
                 "user_conditional_display_{$handle}_output"
             ) ?? [],
-            // 404 page or search results
+            // TODO: 404 page?
+            // TODO: date archive?
+            // TODO: home page?
+            // TODO: search results?
             default => [],
         };
 

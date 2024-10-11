@@ -46,10 +46,6 @@ class ConditionalDisplay
 
     private function registerFields()
     {
-        if (! is_admin()) {
-            return;
-        }
-
         foreach (self::FIELDS as $field) {
             (new $field())->handle();
         }

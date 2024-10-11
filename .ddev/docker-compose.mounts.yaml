@@ -1,0 +1,4 @@
+services:
+  web:
+    volumes:
+      - "../plugin:/var/www/html/wordpress/wp-content/plugins/${DDEV_SITENAME}"
