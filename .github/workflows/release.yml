@@ -67,7 +67,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Conditional-Display-${{ steps.version.outputs.VERSION }}.zip
+          asset_path: ./plugin/Conditional-Display-${{ steps.version.outputs.VERSION }}.zip
           asset_name: Conditional-Display-${{ steps.version.outputs.VERSION }}.zip
           asset_content_type: application/zip
 
@@ -77,6 +77,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Conditional-Display-${{ steps.version.outputs.VERSION }}.tar.gz
+          asset_path: ./plugin/Conditional-Display-${{ steps.version.outputs.VERSION }}.tar.gz
           asset_name: Conditional-Display-${{ steps.version.outputs.VERSION }}.tar.gz
           asset_content_type: application/gzip
