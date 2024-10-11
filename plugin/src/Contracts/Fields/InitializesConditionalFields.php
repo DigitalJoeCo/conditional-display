@@ -86,7 +86,6 @@ trait InitializesConditionalFields
         string $pretty,
         string $pageParent,
     ): AbstractContainer {
-        \QM::debug($handle);
         return Container::make('theme_options', $pretty)
             ->set_page_parent($pageParent)
             ->add_fields([
