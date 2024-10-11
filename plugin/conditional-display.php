@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Conditional Scripts
  * Description: Load scripts conditionally
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: Digital Dyve
  * License: GPL2
  **/
